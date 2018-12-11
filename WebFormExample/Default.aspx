@@ -5,9 +5,9 @@
 
 <asp:GridView ID="GridViewFuel" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="FuelID" DataSourceID="SqlDataSourceFuel">
     <Columns>
-        <asp:BoundField DataField="FuelID" HeaderText="FuelID" InsertVisible="False" ReadOnly="True" SortExpression="FuelID" />
-        <asp:BoundField DataField="FuelType" HeaderText="FuelType" SortExpression="FuelType" />
-        <asp:BoundField DataField="FuelDensity" HeaderText="FuelDensity" SortExpression="FuelDensity" />
+        <asp:BoundField DataField="FuelID" HeaderText="Код" InsertVisible="False" ReadOnly="True" SortExpression="FuelID" />
+        <asp:BoundField DataField="FuelType" HeaderText="Название" SortExpression="FuelType" />
+        <asp:BoundField DataField="FuelDensity" HeaderText="Плотность" SortExpression="FuelDensity" />
     </Columns>
     </asp:GridView>
 
