@@ -1,42 +1,18 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WebFormExample._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Label ID="GridViewLabel" runat="server" Text="Топливная база" Font-Bold="true" />
 
-    <div class="jumbotron">
-        <h1>ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-        <p><a href="http://www.asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-    </div>
+<asp:GridView ID="GridViewFuel" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="FuelID" DataSourceID="SqlDataSourceFuel">
+    <Columns>
+        <asp:BoundField DataField="FuelID" HeaderText="FuelID" InsertVisible="False" ReadOnly="True" SortExpression="FuelID" />
+        <asp:BoundField DataField="FuelType" HeaderText="FuelType" SortExpression="FuelType" />
+        <asp:BoundField DataField="FuelDensity" HeaderText="FuelDensity" SortExpression="FuelDensity" />
+    </Columns>
+    </asp:GridView>
 
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-            A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>
-                NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>
-                You can easily find a web hosting company that offers the right mix of features and price for your applications.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
-            </p>
-        </div>
-    </div>
+    <asp:SqlDataSource ID="SqlDataSourceFuel" runat="server" ConnectionString="<%$ ConnectionStrings:toplivoConnectionString %>" 
+        SelectCommand="SELECT * FROM [Fuels]">
+    </asp:SqlDataSource>
 
-</asp:Content>
+    </asp:Content>

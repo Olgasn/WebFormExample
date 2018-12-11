@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Drawing;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace WebFormExample
 {
-    public partial class About : Page
+    public partial class Fuels : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
