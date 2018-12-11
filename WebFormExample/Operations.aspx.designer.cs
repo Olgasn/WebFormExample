@@ -13,6 +13,15 @@ namespace WebFormExample {
     public partial class Operations {
         
         /// <summary>
+        /// TextBoxFuel элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxFuel;
+        
+        /// <summary>
         /// DropDownListTank элемент управления.
         /// </summary>
         /// <remarks>
@@ -20,15 +29,6 @@ namespace WebFormExample {
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DropDownListTank;
-        
-        /// <summary>
-        /// TextBoxTank элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxTank;
         
         /// <summary>
         /// GridViewLabel элемент управления.

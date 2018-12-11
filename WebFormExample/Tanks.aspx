@@ -33,16 +33,19 @@
 <asp:GridView ID="GridViewTank" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="TankID" DataSourceID="SqlDataSourceTanks">
     <Columns>
         <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
-        <asp:BoundField DataField="TankID" HeaderText="TankID" InsertVisible="False" ReadOnly="True" SortExpression="TankID" />
-        <asp:BoundField DataField="TankType" HeaderText="TankType" SortExpression="TankType" />
-        <asp:BoundField DataField="TankVolume" HeaderText="TankVolume" SortExpression="TankVolume" />
-        <asp:BoundField DataField="TankWeight" HeaderText="TankWeight" SortExpression="TankWeight" />
-        <asp:BoundField DataField="TankMaterial" HeaderText="TankMaterial" SortExpression="TankMaterial" />
-        <asp:BoundField DataField="TankPicture" HeaderText="TankPicture" SortExpression="TankPicture" />
+        <asp:BoundField DataField="TankID" HeaderText="Код" InsertVisible="False" ReadOnly="True" SortExpression="TankID" />
+        <asp:BoundField DataField="TankType" HeaderText="Наименование" SortExpression="TankType" />
+        <asp:BoundField DataField="TankVolume" HeaderText="Объем" SortExpression="TankVolume" />
+        <asp:BoundField DataField="TankWeight" HeaderText="Вес" SortExpression="TankWeight" />
+        <asp:BoundField DataField="TankMaterial" HeaderText="Материал" SortExpression="TankMaterial" />
+        <asp:BoundField DataField="TankPicture" HeaderText="Изображение" SortExpression="TankPicture" />
     </Columns>
 </asp:GridView>
-<asp:SqlDataSource ID="SqlDataSourceTanks" runat="server" ConnectionString="<%$ ConnectionStrings:toplivoConnectionString %>" 
-    SelectCommand="SELECT * FROM [Tanks] WHERE ([TankType] LIKE '%' + @TankType + '%')" DeleteCommand="DELETE FROM [Tanks] WHERE [TankID] = @TankID" UpdateCommand="UPDATE [Tanks] SET [TankType] = @TankType, [TankVolume] = @TankVolume, [TankWeight] = @TankWeight, [TankMaterial] = @TankMaterial, [TankPicture] = @TankPicture WHERE [TankID] = @TankID" InsertCommand="INSERT INTO [Tanks] ([TankType], [TankVolume], [TankWeight], [TankMaterial], [TankPicture]) VALUES (@TankType, @TankVolume, @TankWeight, @TankMaterial, @TankPicture)">
+<asp:SqlDataSource ID="SqlDataSourceTanks" runat="server" 
+    ConnectionString="<%$ ConnectionStrings:toplivoConnectionString %>" 
+    SelectCommand="SELECT * FROM [Tanks] WHERE ([TankType] LIKE '%' + @TankType + '%')" 
+    DeleteCommand="DELETE FROM [Tanks] WHERE [TankID] = @TankID" 
+    UpdateCommand="UPDATE [Tanks] SET [TankType] = @TankType, [TankVolume] = @TankVolume, [TankWeight] = @TankWeight, [TankMaterial] = @TankMaterial, [TankPicture] = @TankPicture WHERE [TankID] = @TankID" InsertCommand="INSERT INTO [Tanks] ([TankType], [TankVolume], [TankWeight], [TankMaterial], [TankPicture]) VALUES (@TankType, @TankVolume, @TankWeight, @TankMaterial, @TankPicture)">
     <DeleteParameters>
         <asp:Parameter Name="TankID" Type="Int32" />
     </DeleteParameters>

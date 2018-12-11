@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Operations.aspx.cs" Inherits="WebFormExample.Operations" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    Найти емкость: <asp:DropDownList ID="DropDownListTank" runat="server" DataSourceID="SqlDataSourceTank" DataTextField="TankType" DataValueField="TankID" AutoPostBack="True"></asp:DropDownList> 
-Найти топливо:<asp:TextBox ID="TextBoxTank" runat="server" ></asp:TextBox>
+    Найти топливо:<asp:TextBox ID="TextBoxFuel" runat="server" ></asp:TextBox>
+    Найти емкость: <asp:DropDownList ID="DropDownListTank" runat="server" DataSourceID="SqlDataSourceTank" DataTextField="TankType" DataValueField="TankID" AutoPostBack="True"></asp:DropDownList>
+    <br />
     <asp:Label ID="GridViewLabel" runat="server" Text="Операции" Font-Bold="true"/>
 
     <asp:GridView ID="GridViewOperations" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="OperationID" DataSourceID="SqlDataSourceOperation">
@@ -12,8 +13,7 @@
                 <EditItemTemplate>
                     <asp:DropDownList ID="FuelID" runat="server" DataSourceID="SqlDataSourceFuel" DataTextField="FuelType" DataValueField="FuelID" SelectedValue='<%# Bind("FuelID") %>'>
                     </asp:DropDownList>
-                </EditItemTemplate>
-                
+                </EditItemTemplate>                
                 <ItemTemplate>
                  <asp:Label ID="FuelId" runat="server"  Text='<%# Eval("FuelType") %>'></asp:Label>
                 </ItemTemplate>
@@ -25,12 +25,11 @@
                     </asp:DropDownList>
                 </EditItemTemplate>
                 <ItemTemplate>
-                    <asp:DropDownList ID="TankID" runat="server" DataSourceID="SqlDataSourceTank" DataTextField="TankType" DataValueField="TankID" SelectedValue='<%# Eval("TankID") %>'>
-                    </asp:DropDownList>
+                 <asp:Label ID="TankId" runat="server"  Text='<%# Eval("TankType") %>'></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
 
-            <asp:BoundField DataField="Inc_Exp" HeaderText="Приход_Расход" SortExpression="Inc_Exp"/>
+            <asp:BoundField DataField="Inc_Exp" HeaderText="Приход_Расход" SortExpression="Inc_Exp" />
             <asp:BoundField DataField="Date" HeaderText="Дата" SortExpression="Date" />
         </Columns>
     </asp:GridView>
@@ -43,7 +42,8 @@
         ConnectionString="<%$ ConnectionStrings:toplivoConnectionString %>" 
         SelectCommand="SELECT [TankID], [TankType] FROM [Tanks]">
     </asp:SqlDataSource>
-    <asp:SqlDataSource ID="SqlDataSourceOperation" runat="server" ConnectionString="<%$ ConnectionStrings:toplivoConnectionString %>"
+    <asp:SqlDataSource ID="SqlDataSourceOperation" runat="server" 
+        ConnectionString="<%$ ConnectionStrings:toplivoConnectionString %>"
         DeleteCommand="DELETE FROM [Operations] WHERE [OperationID] = @OperationID"
         InsertCommand="INSERT INTO [Operations] ([FuelID], [TankID], [Inc_Exp], [Date]) VALUES (@FuelID, @TankID, @Inc_Exp, @Date)"
         SelectCommand="SELECT Operations.OperationID, Operations.FuelID, Operations.TankID, Operations.Inc_Exp, Operations.Date, Tanks.TankType, Fuels.FuelType 
@@ -61,7 +61,7 @@
         </InsertParameters>
         <SelectParameters>
             <asp:ControlParameter ControlID="DropDownListTank" DefaultValue="1" Name="TankID" PropertyName="SelectedValue" Type="Int32" />
-            <asp:ControlParameter ControlID="TextBoxTank" DefaultValue="A" Name="FuelType" PropertyName="Text"/>
+            <asp:ControlParameter ControlID="TextBoxFuel" DefaultValue="A" Name="FuelType" PropertyName="Text"/>
         </SelectParameters>
         <UpdateParameters>
             <asp:Parameter Name="FuelID" Type="Int32" />
