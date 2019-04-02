@@ -19,7 +19,6 @@ namespace WebFormExample {
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label GridViewLabel;
         
         /// <summary>
         /// GridViewFuel элемент управления.
@@ -28,15 +27,13 @@ namespace WebFormExample {
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewFuel;
-        
-        /// <summary>
+     
+        /// <ummary>
         /// SqlDataSourceFuel элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceFuel;
     }
 }

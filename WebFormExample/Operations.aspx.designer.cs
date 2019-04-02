@@ -40,6 +40,15 @@ namespace WebFormExample {
         protected global::System.Web.UI.WebControls.Label GridViewLabel;
         
         /// <summary>
+        /// DetailsView1 элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DetailsView DetailsView1;
+        
+        /// <summary>
         /// GridViewOperations элемент управления.
         /// </summary>
         /// <remarks>

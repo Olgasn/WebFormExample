@@ -4,7 +4,59 @@
     Найти емкость: <asp:DropDownList ID="DropDownListTank" runat="server" DataSourceID="SqlDataSourceTank" DataTextField="TankType" DataValueField="TankID" AutoPostBack="True"></asp:DropDownList>
     <br />
     <asp:Label ID="GridViewLabel" runat="server" Text="Операции" Font-Bold="true"/>
-
+    <asp:DetailsView ID="DetailsView1" runat="server" 
+        AutoGenerateRows="False" DataKeyNames="OperationId" 
+        DataSourceID="SqlDataSourceOperation" Height="50px" Width="100%">
+        <Fields>
+            <asp:BoundField DataField="OperationId" HeaderText="OperationId" 
+                InsertVisible="False" ReadOnly="True" SortExpression="OperationId" />
+            <asp:TemplateField HeaderText="TankId" SortExpression="TankId">
+                <EditItemTemplate>
+                    <asp:DropDownList ID="DropDownList2" runat="server" 
+                        DataSourceID="SqlDataSourceTank" DataTextField="TankType" 
+                        DataValueField="TankId">
+                    </asp:DropDownList>
+                </EditItemTemplate>
+                <InsertItemTemplate>
+                    <asp:DropDownList ID="DropDownList3" runat="server" 
+                        DataSourceID="SqlDataSourceTank" DataTextField="TankType" 
+                        DataValueField="TankId">
+                    </asp:DropDownList>
+                </InsertItemTemplate>
+                <ItemTemplate>
+                    <asp:DropDownList ID="DropDownList1" runat="server" 
+                        DataSourceID="SqlDataSourceTank" DataTextField="TankType" 
+                        DataValueField="TankId" Enabled="False">
+                    </asp:DropDownList>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="FuelId" SortExpression="FuelId">
+                <EditItemTemplate>
+                    <asp:DropDownList ID="DropDownList5" runat="server" 
+                        DataSourceID="SqlDataSourceFuel" DataTextField="FuelType" 
+                        DataValueField="FuelId">
+                    </asp:DropDownList>
+                </EditItemTemplate>
+                <InsertItemTemplate>
+                    <asp:DropDownList ID="DropDownList6" runat="server" 
+                        DataSourceID="SqlDataSourceFuel" DataTextField="FuelType" 
+                        DataValueField="FuelId">
+                    </asp:DropDownList>
+                </InsertItemTemplate>
+                <ItemTemplate>
+                    <asp:DropDownList ID="DropDownList4" runat="server" 
+                        DataSourceID="SqlDataSourceFuel" DataTextField="FuelType" 
+                        DataValueField="FuelId" Enabled="False">
+                    </asp:DropDownList>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:BoundField DataField="Inc_Exp" HeaderText="Inc_Exp" 
+                SortExpression="Inc_Exp" />
+            <asp:BoundField DataField="Date" HeaderText="Date" SortExpression="Date" />
+            <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" 
+                ShowInsertButton="True" />
+        </Fields>
+    </asp:DetailsView>
     <asp:GridView ID="GridViewOperations" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="OperationID" DataSourceID="SqlDataSourceOperation">
         <Columns>
             <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
@@ -29,7 +81,7 @@
                 </ItemTemplate>
             </asp:TemplateField>
 
-            <asp:BoundField DataField="Inc_Exp" HeaderText="Приход_Расход" SortExpression="Inc_Exp" />
+            <asp:BoundField DataField="Inc_Exp" HeaderText="Inc_Exp" SortExpression="Inc_Exp" />
             <asp:BoundField DataField="Date" HeaderText="Дата" SortExpression="Date" />
         </Columns>
     </asp:GridView>
