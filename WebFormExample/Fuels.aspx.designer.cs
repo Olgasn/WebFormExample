@@ -13,13 +13,13 @@ namespace WebFormExample {
     public partial class _Default {
         
         /// <summary>
-        /// FormView1 элемент управления.
+        /// FormViewInsert элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FormView FormView1;
+        protected global::System.Web.UI.WebControls.FormView FormViewInsert;
         
         /// <summary>
         /// GridViewLabel элемент управления.
@@ -40,12 +40,12 @@ namespace WebFormExample {
         protected global::System.Web.UI.WebControls.GridView GridViewFuel;
         
         /// <summary>
-        /// SqlDataSourceFuel элемент управления.
+        /// SqlDataSourceFuels элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceFuel;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceFuels;
     }
 }

@@ -22,13 +22,13 @@ namespace WebFormExample {
         protected global::System.Web.UI.WebControls.TextBox TextBoxTank;
         
         /// <summary>
-        /// FormView1 элемент управления.
+        /// FormViewInsert элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FormView FormView1;
+        protected global::System.Web.UI.WebControls.FormView FormViewInsert;
         
         /// <summary>
         /// GridViewLabel элемент управления.
@@ -56,14 +56,5 @@ namespace WebFormExample {
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceTanks;
-        
-        /// <summary>
-        /// SqlDataSourceTank элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceTank;
     }
 }

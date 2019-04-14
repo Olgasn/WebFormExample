@@ -1,63 +1,35 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Operations.aspx.cs" Inherits="WebFormExample.Operations" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    Найти топливо:<asp:TextBox ID="TextBoxFuel" runat="server" ></asp:TextBox>
+    Найти топливо:<asp:TextBox ID="TextBoxFuel" runat="server"></asp:TextBox>
     Найти емкость: <asp:DropDownList ID="DropDownListTank" runat="server" DataSourceID="SqlDataSourceTank" DataTextField="TankType" DataValueField="TankID" AutoPostBack="True"></asp:DropDownList>
-    <br />
+    <asp:FormView ID="FormViewInsert" runat="server" DataSourceID="SqlDataSourceOperations" DataKeyNames="OperationID">       
+        <InsertItemTemplate>
+            <h4>Добавить:</h4>
+            Топливо:
+            <asp:DropDownList ID="FuelIDDropDownList" runat="server"  DataSourceID="SqlDataSourceFuel" DataTextField="FuelType" DataValueField="FuelID" SelectedValue='<%# Bind("FuelID") %>'>
+            </asp:DropDownList>
+            <br />
+            Емкость:
+            <asp:DropDownList ID="TankIDDropDownList" runat="server"  DataSourceID="SqlDataSourceTank" DataTextField="TankType" DataValueField="TankID" SelectedValue='<%# Bind("TankID") %>'>
+            </asp:DropDownList>
+            <br />
+            Приход_Расход:
+            <asp:TextBox ID="Inc_ExpTextBox" runat="server" Text='<%# Bind("Inc_Exp") %>' />
+            <br />
+            Дата:
+            <asp:TextBox ID="DateTextBox" runat="server" Text='<%# Bind("Date") %>' />
+            <br />
+            <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Вставка" />
+            <asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Отмена" />
+        </InsertItemTemplate>
+           <ItemTemplate>
+           <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="Добавить операцию" />
+        </ItemTemplate>
+</asp:FormView>
+
     <asp:Label ID="GridViewLabel" runat="server" Text="Операции" Font-Bold="true"/>
-    <asp:DetailsView ID="DetailsView1" runat="server" 
-        AutoGenerateRows="False" DataKeyNames="OperationId" 
-        DataSourceID="SqlDataSourceOperation" Height="50px" Width="100%">
-        <Fields>
-            <asp:BoundField DataField="OperationId" HeaderText="OperationId" 
-                InsertVisible="False" ReadOnly="True" SortExpression="OperationId" />
-            <asp:TemplateField HeaderText="TankId" SortExpression="TankId">
-                <EditItemTemplate>
-                    <asp:DropDownList ID="DropDownList2" runat="server" 
-                        DataSourceID="SqlDataSourceTank" DataTextField="TankType" 
-                        DataValueField="TankId">
-                    </asp:DropDownList>
-                </EditItemTemplate>
-                <InsertItemTemplate>
-                    <asp:DropDownList ID="DropDownList3" runat="server" 
-                        DataSourceID="SqlDataSourceTank" DataTextField="TankType" 
-                        DataValueField="TankId">
-                    </asp:DropDownList>
-                </InsertItemTemplate>
-                <ItemTemplate>
-                    <asp:DropDownList ID="DropDownList1" runat="server" 
-                        DataSourceID="SqlDataSourceTank" DataTextField="TankType" 
-                        DataValueField="TankId" Enabled="False">
-                    </asp:DropDownList>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="FuelId" SortExpression="FuelId">
-                <EditItemTemplate>
-                    <asp:DropDownList ID="DropDownList5" runat="server" 
-                        DataSourceID="SqlDataSourceFuel" DataTextField="FuelType" 
-                        DataValueField="FuelId">
-                    </asp:DropDownList>
-                </EditItemTemplate>
-                <InsertItemTemplate>
-                    <asp:DropDownList ID="DropDownList6" runat="server" 
-                        DataSourceID="SqlDataSourceFuel" DataTextField="FuelType" 
-                        DataValueField="FuelId">
-                    </asp:DropDownList>
-                </InsertItemTemplate>
-                <ItemTemplate>
-                    <asp:DropDownList ID="DropDownList4" runat="server" 
-                        DataSourceID="SqlDataSourceFuel" DataTextField="FuelType" 
-                        DataValueField="FuelId" Enabled="False">
-                    </asp:DropDownList>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:BoundField DataField="Inc_Exp" HeaderText="Inc_Exp" 
-                SortExpression="Inc_Exp" />
-            <asp:BoundField DataField="Date" HeaderText="Date" SortExpression="Date" />
-            <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" 
-                ShowInsertButton="True" />
-        </Fields>
-    </asp:DetailsView>
-    <asp:GridView ID="GridViewOperations" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="OperationID" DataSourceID="SqlDataSourceOperation">
+
+    <asp:GridView ID="GridViewOperations" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="OperationID" DataSourceID="SqlDataSourceOperations">
         <Columns>
             <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
             <asp:BoundField DataField="OperationID" HeaderText="OperationID" InsertVisible="False" ReadOnly="True" SortExpression="OperationID" Visible="False" />
@@ -94,13 +66,13 @@
         ConnectionString="<%$ ConnectionStrings:toplivoConnectionString %>" 
         SelectCommand="SELECT [TankID], [TankType] FROM [Tanks]">
     </asp:SqlDataSource>
-    <asp:SqlDataSource ID="SqlDataSourceOperation" runat="server" 
+    <asp:SqlDataSource ID="SqlDataSourceOperations" runat="server" 
         ConnectionString="<%$ ConnectionStrings:toplivoConnectionString %>"
         DeleteCommand="DELETE FROM [Operations] WHERE [OperationID] = @OperationID"
         InsertCommand="INSERT INTO [Operations] ([FuelID], [TankID], [Inc_Exp], [Date]) VALUES (@FuelID, @TankID, @Inc_Exp, @Date)"
         SelectCommand="SELECT Operations.OperationID, Operations.FuelID, Operations.TankID, Operations.Inc_Exp, Operations.Date, Tanks.TankType, Fuels.FuelType 
         FROM Operations INNER JOIN Tanks ON Operations.TankID = Tanks.TankID INNER JOIN Fuels ON Operations.FuelID = Fuels.FuelID 
-        WHERE (Operations.TankID = @TankID) AND (Fuels.FuelType Like  '%'+@FuelType+'%')"
+        WHERE (Operations.TankID = @TankID) AND (Fuels.FuelType Like '%'+ISNULL(@FuelType,'')+'%')"
         UpdateCommand="UPDATE [Operations] SET [FuelID] = @FuelID, [TankID] = @TankID, [Inc_Exp] = @Inc_Exp, [Date] = @Date WHERE [OperationID] = @OperationID">
         <DeleteParameters>
             <asp:Parameter Name="OperationID" Type="Int32" />
@@ -113,7 +85,8 @@
         </InsertParameters>
         <SelectParameters>
             <asp:ControlParameter ControlID="DropDownListTank" DefaultValue="1" Name="TankID" PropertyName="SelectedValue" Type="Int32" />
-            <asp:ControlParameter ControlID="TextBoxFuel" DefaultValue="A" Name="FuelType" PropertyName="Text"/>
+            <asp:ControlParameter ControlID="TextBoxFuel"  Name="FuelType" PropertyName="Text" DefaultValue="" ConvertEmptyStringToNull="False" DbType="String"/>
+
         </SelectParameters>
         <UpdateParameters>
             <asp:Parameter Name="FuelID" Type="Int32" />

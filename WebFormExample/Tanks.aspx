@@ -1,12 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Tanks.aspx.cs" Inherits="WebFormExample.Tanks" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
-    Найти емкость:<asp:TextBox ID="TextBoxTank" runat="server" Text="A"></asp:TextBox>
-
-
-    <asp:FormView ID="FormView1" runat="server" DataKeyNames="TankID" DataSourceID="SqlDataSourceTank">
-
+    Найти емкость:<asp:TextBox ID="TextBoxTank" runat="server" Width="15%" Text=""></asp:TextBox>
+    <asp:FormView ID="FormViewInsert" runat="server" DataKeyNames="TankID" DataSourceID="SqlDataSourceTanks">
         <InsertItemTemplate>
+           <h4>Добавить:</h4>
             Емкость:
             <asp:TextBox ID="TankTypeTextBox" runat="server" Text='<%# Bind("TankType") %>' />
             <br />
@@ -43,9 +40,10 @@
 </asp:GridView>
 <asp:SqlDataSource ID="SqlDataSourceTanks" runat="server" 
     ConnectionString="<%$ ConnectionStrings:toplivoConnectionString %>" 
-    SelectCommand="SELECT * FROM [Tanks] WHERE ([TankType] LIKE '%' + @TankType + '%')" 
+    SelectCommand="SELECT * FROM [Tanks] WHERE ((TankType LIKE '%'+ ISNULL(@TankType,'')+'%'))" 
     DeleteCommand="DELETE FROM [Tanks] WHERE [TankID] = @TankID" 
-    UpdateCommand="UPDATE [Tanks] SET [TankType] = @TankType, [TankVolume] = @TankVolume, [TankWeight] = @TankWeight, [TankMaterial] = @TankMaterial, [TankPicture] = @TankPicture WHERE [TankID] = @TankID" InsertCommand="INSERT INTO [Tanks] ([TankType], [TankVolume], [TankWeight], [TankMaterial], [TankPicture]) VALUES (@TankType, @TankVolume, @TankWeight, @TankMaterial, @TankPicture)">
+    UpdateCommand="UPDATE [Tanks] SET [TankType] = @TankType, [TankVolume] = @TankVolume, [TankWeight] = @TankWeight, [TankMaterial] = @TankMaterial, [TankPicture] = @TankPicture WHERE [TankID] = @TankID" 
+    InsertCommand="INSERT INTO [Tanks] ([TankType], [TankVolume], [TankWeight], [TankMaterial], [TankPicture]) VALUES (@TankType, @TankVolume, @TankWeight, @TankMaterial, @TankPicture)">
     <DeleteParameters>
         <asp:Parameter Name="TankID" Type="Int32" />
     </DeleteParameters>
@@ -57,7 +55,7 @@
         <asp:Parameter Name="TankPicture" Type="String" />
     </InsertParameters>
     <SelectParameters>
-        <asp:ControlParameter ControlID="TextBoxTank" DefaultValue="A" Name="TankType" PropertyName="Text" Type="String" />
+        <asp:ControlParameter ControlID="TextBoxTank"  Name="TankType" PropertyName="Text" DefaultValue="" ConvertEmptyStringToNull="False" DbType="String"/>
     </SelectParameters>
     <UpdateParameters>
         <asp:Parameter Name="TankType" Type="String" />
@@ -68,14 +66,5 @@
         <asp:Parameter Name="TankID" Type="Int32" />
     </UpdateParameters>
 </asp:SqlDataSource>
-<asp:SqlDataSource ID="SqlDataSourceTank" runat="server" ConnectionString="<%$ ConnectionStrings:toplivoConnectionString %>" 
-    SelectCommand="SELECT * FROM Tanks" InsertCommand="INSERT INTO [Tanks] ([TankType], [TankVolume], [TankWeight], [TankMaterial], [TankPicture]) VALUES (@TankType, @TankVolume, @TankWeight, @TankMaterial, @TankPicture)">
-    <InsertParameters>
-        <asp:Parameter Name="TankType" Type="String" />
-        <asp:Parameter Name="TankVolume" Type="Single" />
-        <asp:Parameter Name="TankWeight" Type="Single" />
-        <asp:Parameter Name="TankMaterial" Type="String" />
-        <asp:Parameter Name="TankPicture" Type="String" />
-    </InsertParameters>
-</asp:SqlDataSource>
+
 </asp:Content>

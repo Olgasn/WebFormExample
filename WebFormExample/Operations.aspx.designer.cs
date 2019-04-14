@@ -31,6 +31,15 @@ namespace WebFormExample {
         protected global::System.Web.UI.WebControls.DropDownList DropDownListTank;
         
         /// <summary>
+        /// FormViewInsert элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FormView FormViewInsert;
+        
+        /// <summary>
         /// GridViewLabel элемент управления.
         /// </summary>
         /// <remarks>
@@ -38,15 +47,6 @@ namespace WebFormExample {
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label GridViewLabel;
-        
-        /// <summary>
-        /// DetailsView1 элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DetailsView DetailsView1;
         
         /// <summary>
         /// GridViewOperations элемент управления.
@@ -76,12 +76,12 @@ namespace WebFormExample {
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceTank;
         
         /// <summary>
-        /// SqlDataSourceOperation элемент управления.
+        /// SqlDataSourceOperations элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceOperation;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceOperations;
     }
 }
