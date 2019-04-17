@@ -1,6 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CodeFuels.aspx.cs" Inherits="WebFormExample.CodeFuels" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
         <br />
+
+
+    <asp:Label ID="LabelFindFuel" runat="server" Text="Label">Топливо</asp:Label><asp:TextBox ID="TextBoxFindFuel" runat="server"></asp:TextBox><asp:Button ID="ButtonFindFuel" runat="server" Text="Найти" OnClick="ButtonFindFuel_Click" />
+    <br />
         <strong>Виды топлива</strong>
         <asp:GridView ID="GridViewFuel" runat="server" AutoGenerateColumns="False"
             AllowPaging="True" 
@@ -9,10 +13,8 @@
             AutoGenerateEditButton="True" 
             EnableSortingAndPagingCallbacks="True" 
             OnRowCancelingEdit="GridViewFuel_RowCancelingEdit" 
-            OnRowDeleted="GridViewFuel_RowDeleted" 
             OnRowDeleting="GridViewFuel_RowDeleting" 
             OnRowEditing="GridViewFuel_RowEditing" 
-            OnRowUpdated="GridViewFuel_RowUpdated" 
             OnRowUpdating="GridViewFuel_RowUpdating" >
             <Columns>
                 <asp:BoundField DataField="FuelId" HeaderText="Код" SortExpression="FuelId" />
