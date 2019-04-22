@@ -10,7 +10,7 @@
 namespace WebFormExample {
     
     
-    public partial class _Default {
+    public partial class Fuels {
         
         /// <summary>
         /// FormViewInsert элемент управления.

@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using WebFormExample.Data;
 using WebFormExample.Models;
@@ -19,10 +15,9 @@ namespace WebFormExample
         protected void Page_Load(object sender, EventArgs e)
         {
             strFindFuel = TextBoxFindFuel.Text;
-            if (!IsPostBack)
-            {
-                ShowData(strFindFuel);
-            }
+            ShowData(strFindFuel);
+
+
         }
 
         protected void GridViewFuel_RowEditing(object sender, GridViewEditEventArgs e)
@@ -80,17 +75,34 @@ namespace WebFormExample
             //Bind data to the GridView control.
             ShowData(strFindFuel);
         }
-        protected void ShowData(string strFindFuel="")
-        {
-            var fuels = db.Fuels.Where(s=>s.FuelType.Contains(strFindFuel)).ToList();
-            GridViewFuel.DataSource = fuels;
-            GridViewFuel.DataBind();
-        }
+
 
         protected void ButtonFindFuel_Click(object sender, EventArgs e)
         {
             strFindFuel = TextBoxFindFuel.Text;
             ShowData(strFindFuel);
+        }
+
+        protected void ButtonAddFuel_Click(object sender, EventArgs e)
+        {
+            Fuel fuel = new Fuel
+            {
+                FuelDensity = Convert.ToSingle(TextBoxFuelDensity.Text),
+                FuelType = TextBoxFuelType.Text
+            };
+
+            db.Fuels.Add(fuel);
+            db.SaveChanges();
+            TextBoxFuelDensity.Text = "";
+            TextBoxFuelType.Text = "";
+            ShowData(strFindFuel);
+                                 
+        }
+        protected void ShowData(string strFindFuel = "")
+        {
+            var fuels = db.Fuels.Where(s => s.FuelType.Contains(strFindFuel)).ToList();
+            GridViewFuel.DataSource = fuels;
+            GridViewFuel.DataBind();
         }
     }
 }

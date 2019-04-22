@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Fuels.aspx.cs" Inherits="WebFormExample._Default" %>
+﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Fuels.aspx.cs" Inherits="WebFormExample.Fuels" %>
    <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
    <asp:FormView ID="FormViewInsert" runat="server" DataKeyNames="FuelID" DataSourceID="SqlDataSourceFuels">
        <InsertItemTemplate>
