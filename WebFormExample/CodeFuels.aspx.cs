@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web.UI.WebControls;
@@ -9,13 +10,18 @@ namespace WebFormExample
 {
     public partial class CodeFuels : System.Web.UI.Page
     {
-        private ToplivoContext db = new ToplivoContext();
+        private ToplivoContext db= new ToplivoContext();
         private string strFindFuel="";
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
+
             strFindFuel = TextBoxFindFuel.Text;
-            ShowData(strFindFuel);
+            if (!Page.IsPostBack)
+            {
+                ShowData(strFindFuel);
+            }
 
 
         }
@@ -36,7 +42,7 @@ namespace WebFormExample
             //Update the values.
             GridViewRow row = GridViewFuel.Rows[e.RowIndex];
             int id = Convert.ToInt32(((TextBox)(row.Cells[1].Controls[0])).Text);
-            var fuel = db.Fuels.Where(f => f.FuelID==id).FirstOrDefault();
+            Fuel fuel = db.Fuels.Where(f => f.FuelID==id).FirstOrDefault();
             fuel.FuelType = ((TextBox)(row.Cells[2].Controls[0])).Text;
             fuel.FuelDensity = Convert.ToSingle(((TextBox)(row.Cells[3].Controls[0])).Text);
 
@@ -54,7 +60,7 @@ namespace WebFormExample
             //Update the values.
             GridViewRow row = GridViewFuel.Rows[e.RowIndex];
             int id = Convert.ToInt32(((TextBox)(row.Cells[1].Controls[0])).Text);
-            var fuel = db.Fuels.Where(f => f.FuelID == id).FirstOrDefault();
+            Fuel fuel = db.Fuels.Where(f => f.FuelID == id).FirstOrDefault();
             db.Fuels.Remove(fuel);
 
             //db.Entry(fuel).State = EntityState.Modified;
@@ -100,9 +106,16 @@ namespace WebFormExample
         }
         protected void ShowData(string strFindFuel = "")
         {
-            var fuels = db.Fuels.Where(s => s.FuelType.Contains(strFindFuel)).ToList();
+
+            List<Fuel> fuels = db.Fuels.Where(s => s.FuelType.Contains(strFindFuel)).ToList();
             GridViewFuel.DataSource = fuels;
             GridViewFuel.DataBind();
+        }
+
+        protected void GridViewFuel_RowUpdated(object sender, GridViewUpdatedEventArgs e)
+        {
+          
+
         }
     }
 }

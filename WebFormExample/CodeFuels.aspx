@@ -19,7 +19,7 @@
             OnRowCancelingEdit="GridViewFuel_RowCancelingEdit" 
             OnRowDeleting="GridViewFuel_RowDeleting" 
             OnRowEditing="GridViewFuel_RowEditing" 
-            OnRowUpdating="GridViewFuel_RowUpdating" PageSize="15" >
+            OnRowUpdating="GridViewFuel_RowUpdating" PageSize="15" OnRowUpdated="GridViewFuel_RowUpdated" >
             <Columns>
                 <asp:BoundField DataField="FuelId" HeaderText="Код" SortExpression="FuelId" />
                 <asp:BoundField DataField="FuelType" HeaderText="Название" SortExpression="FuelType" />
