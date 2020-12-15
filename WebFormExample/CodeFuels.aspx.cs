@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web.UI.WebControls;
@@ -9,14 +10,18 @@ namespace WebFormExample
 {
     public partial class CodeFuels : System.Web.UI.Page
     {
-        private ToplivoContext db;
+        private ToplivoContext db= new ToplivoContext();
         private string strFindFuel="";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            db = new ToplivoContext();
+
+
             strFindFuel = TextBoxFindFuel.Text;
-            ShowData(strFindFuel);
+            if (!Page.IsPostBack)
+            {
+                ShowData(strFindFuel);
+            }
 
 
         }
@@ -101,9 +106,16 @@ namespace WebFormExample
         }
         protected void ShowData(string strFindFuel = "")
         {
-            System.Collections.Generic.List<Fuel> fuels = db.Fuels.Where(s => s.FuelType.Contains(strFindFuel)).ToList();
+
+            List<Fuel> fuels = db.Fuels.Where(s => s.FuelType.Contains(strFindFuel)).ToList();
             GridViewFuel.DataSource = fuels;
             GridViewFuel.DataBind();
+        }
+
+        protected void GridViewFuel_RowUpdated(object sender, GridViewUpdatedEventArgs e)
+        {
+          
+
         }
     }
 }
