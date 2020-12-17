@@ -15,14 +15,12 @@ namespace WebFormExample
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
-            strFindFuel = TextBoxFindFuel.Text;
+  
             if (!Page.IsPostBack)
             {
+                strFindFuel = TextBoxFindFuel.Text;
                 ShowData(strFindFuel);
             }
-
 
         }
 
@@ -91,18 +89,33 @@ namespace WebFormExample
 
         protected void ButtonAddFuel_Click(object sender, EventArgs e)
         {
-            Fuel fuel = new Fuel
+            string fuelDensity = TextBoxFuelDensity.Text??"";
+            string fuelType = TextBoxFuelType.Text ?? "";
+            if (fuelDensity!="" & fuelType!="")
             {
-                FuelDensity = Convert.ToSingle(TextBoxFuelDensity.Text),
-                FuelType = TextBoxFuelType.Text
-            };
+                Fuel fuel = new Fuel
+                {
+                    FuelDensity = Convert.ToSingle(fuelDensity),
+                    FuelType = fuelType
+                };
 
-            db.Fuels.Add(fuel);
-            db.SaveChanges();
-            TextBoxFuelDensity.Text = "";
-            TextBoxFuelType.Text = "";
-            ShowData(strFindFuel);
+                db.Fuels.Add(fuel);
+                db.SaveChanges();
+                TextBoxFuelDensity.Text = "";
+                TextBoxFuelType.Text = "";
+                ShowData(strFindFuel);
+
+            }
+
                                  
+        }  
+        
+
+        protected void GridViewFuel_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridViewFuel.PageIndex = e.NewPageIndex;
+            ShowData(strFindFuel);
+
         }
         protected void ShowData(string strFindFuel = "")
         {
@@ -112,10 +125,5 @@ namespace WebFormExample
             GridViewFuel.DataBind();
         }
 
-        protected void GridViewFuel_RowUpdated(object sender, GridViewUpdatedEventArgs e)
-        {
-          
-
-        }
     }
 }
